@@ -1,0 +1,24 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 150988
+  host: localhost
+ 
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: GregoryBanco_development
+
+test:
+  <<: *default
+  database: GregoryBanco_test
+
+
+production:
+  <<: *default
+  database: GregoryBanco_production
+  
+
