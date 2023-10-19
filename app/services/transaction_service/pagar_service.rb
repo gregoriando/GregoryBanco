@@ -5,8 +5,8 @@ module TransactionService
       @bank_transaction = bank_transaction
     end
 
-		def pagar
-			if @account.current_balance >= @bank_transaction.transaction_value
+	def pagar
+	if @account.current_balance >= @bank_transaction.transaction_value
 				@account.current_balance -= @bank_transaction.transaction_value
 				@account.save 
 			else 
