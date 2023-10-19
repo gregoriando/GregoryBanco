@@ -15,7 +15,7 @@ O objetivo principal deste projeto é aplicar meus conhecimentos teóricos em de
 - **Programação Orientada a Objetos (POO)**: Adotando princípios de POO para criar classes e objetos que representam entidades do sistema bancário.
 
 - **Banco de Dados**: Utilizando o banco de dados postgresql para armazenar informações de contas, transações e outros aspectos essenciais de um sistema bancário.
-- 
+  
 - **Funcionalidades de Conta**:  depósito, saque e transferência entre contas.
   
 ## Em Andamento
