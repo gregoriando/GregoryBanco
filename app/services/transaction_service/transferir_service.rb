@@ -42,3 +42,9 @@ module TransactionService
     end
   end
 end
+
+#def transferir 
+ # transferidor = Account.find(params[:transferidor_id])
+  #recebidor = Account.find(params[:recebedor_id])
+ #TransactionService::TransferirService.new(transferidor, recebedor, params[:valor]).transferir
+ #end
