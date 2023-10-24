@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :accounts
   post 'bank_transactions/transferir', to: 'bank_transactions#transferir'
   post 'bank_transactions/depositar', to: 'bank_transactions#depositar'
+  post 'bank_transactions/pagar', to: 'bank_transactions#pagar'
+
 
 
 end
