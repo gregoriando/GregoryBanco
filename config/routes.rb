@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :bank_branches
   resources :bank_transactions
   resources :accounts
+  post 'bank_transactions/transferir', to: 'bank_transactions#transferir'
+  post 'bank_transactions/depositar', to: 'bank_transactions#depositar'
+
+
 end
