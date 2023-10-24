@@ -39,6 +39,11 @@ class BankTransactionsController < ApplicationController
     TransactionService::DepositarService.new(account,bank_transaction).depositar 
   end
 
+  def pagar 
+    account = Account.find(params[:id])
+    TransactionService::PagarService.new(account, params[:pagamento]).pagar
+  end
+
   private
 
   def set_bank_transaction

@@ -31,7 +31,6 @@ module TransactionService
         @recebidor.save
         create_transaction(@recebidor, 'transferencia_recebida', @valortransferido)
     end
-      
 
     def create_transaction(account, transaction_type, valortransferido)
       BankTransaction.create(
