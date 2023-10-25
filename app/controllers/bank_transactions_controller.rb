@@ -26,21 +26,22 @@ class BankTransactionsController < ApplicationController
   def destroy
     @bank_transaction.destroy
   end
-  #POST: localhost:3000/bank_transactions/transferir "Rota Criada para fazer isso"
-  def transferir 
+
+  # POST: localhost:3000/bank_transactions/transferir "Rota Criada para fazer isso"
+  def transferir
     transferidor = Account.find(params[:transferidor_id])
     recebidor = Account.find(params[:recebidor_id])
     TransactionService::TransferirService.new(transferidor, recebidor, params[:valor]).transferir
   end
-  #POST: localhost:3000/bank_transactions/depositar "Rota Criada para fazer isso"
-  def depositar 
+
+  # POST: localhost:3000/bank_transactions/depositar "Rota Criada para fazer isso"
+  def depositar
     account = Account.find(params[:account_id])
-    bank_transaction = BankTransaction.find(params[:bank_transaction_id])
-    TransactionService::DepositarService.new(account,bank_transaction).depositar 
+    TransactionService::DepositarService.new(account, params[:valor_deposito]).depositar
   end
 
-  def pagar 
-    account = Account.find(params[:id])
+  def pagar
+    account = Account.find(params[:acccount_id])
     TransactionService::PagarService.new(account, params[:pagamento]).pagar
   end
 
