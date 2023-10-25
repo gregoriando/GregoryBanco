@@ -1,27 +1,23 @@
 module TransactionService
-  class PagarService 
+  class PagarService
     def initialize(account, pagamento)
-      @account = account 
+      @account = account
       @pagamento = pagamento
     end
 
-	  def pagar
-		ActiveRecord::Base.transaction do
+    def pagar
       pagando!
-		end
-	end
+    end
 
-  private
-		def pagando!
-	    if @account.current_balance >= @pagamento
-				@account.current_balance-= @pagamento
-				@account.save 
-        create_transaction(@account, 'deposito', @pagamento)
+    private
 
-			else 
-				raise "Saldo infusiciente para realizar o pagamento"
-			end
-		end
+    def pagando!
+      raise 'Saldo insuficiente para realizar o pagamento' unless @account.current_balance >= @pagamento
+
+      @account.current_balance -= @pagamento
+      @account.save
+      create_transaction(@account, 'pagamento', @pagamento)
+    end
 
     def create_transaction(account, transaction_type, pagamento)
       BankTransaction.create(
@@ -30,11 +26,5 @@ module TransactionService
         transaction_value: pagamento
       )
     end
-	end
+  end
 end
-
-
-
-
-
-          
