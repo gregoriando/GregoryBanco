@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 module TransactionService
   class TransferirService
     def initialize(transferidor, recebidor, valortransferido)
-   		@transferidor = transferidor
-    	@recebidor = recebidor
-    	@valortransferido = valortransferido
+      @transferidor = transferidor
+      @recebidor = recebidor
+      @valortransferido = valortransferido
     end
 
     def transferir
@@ -17,19 +18,17 @@ module TransactionService
     private
 
     def transferencia!
-      if @transferidor.current_balance >= @valortransferido
-          @transferidor.current_balance -= @valortransferido
-          @transferidor.save
-          create_transaction(@transferidor, 'transferencia', @valortransferido)
-      else
-        raise "Saldo Insuficiente"
-      end
+      raise 'Saldo Insuficiente' unless @transferidor.current_balance >= @valortransferido
+
+      @transferidor.current_balance -= @valortransferido
+      @transferidor.save
+      create_transaction(@transferidor, 'transferencia', @valortransferido)
     end
-    
-    def transferencia_recebida! 
-        @recebidor.current_balance += @valortransferido
-        @recebidor.save
-        create_transaction(@recebidor, 'transferencia_recebida', @valortransferido)
+
+    def transferencia_recebida!
+      @recebidor.current_balance += @valortransferido
+      @recebidor.save
+      create_transaction(@recebidor, 'transferencia_recebida', @valortransferido)
     end
 
     def create_transaction(account, transaction_type, valortransferido)
@@ -42,8 +41,4 @@ module TransactionService
   end
 end
 
-#def transferir 
- # transferidor = Account.find(params[:transferidor_id])
-  #recebidor = Account.find(params[:recebedor_id])
- #TransactionService::TransferirService.new(transferidor, recebedor, params[:valor]).transferir
- #end
+
